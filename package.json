@@ -1,0 +1,49 @@
+{
+  "name": "vue-budo-example",
+  "version": "1.0.0",
+  "description": "an experiment blending budo and vue.js",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "vue": "^1.0.7"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.1.4",
+    "babel-preset-es2015": "^6.1.4",
+    "babel-runtime": "^6.1.4",
+    "browserify-hmr": "^0.3.1",
+    "budo": "^6.0.4",
+    "envify": "^3.4.0",
+    "minimist": "^1.2.0",
+    "notify-error": "^1.2.0",
+    "require-path-relative": "^1.0.1",
+    "vue-hot-reload-api": "^1.2.1",
+    "vueify": "^6.0.0",
+    "vueify-insert-css": "^1.0.0"
+  },
+  "tooler": "./tools/component.js",
+  "scripts": {
+    "component": "node ./tools/component.js"
+  },
+  "keywords": [
+    "vue",
+    "budo",
+    "vue.js",
+    "component",
+    "test",
+    "hmr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jam3/vue-budo-example.git"
+  },
+  "homepage": "https://github.com/Jam3/vue-budo-example",
+  "bugs": {
+    "url": "https://github.com/Jam3/vue-budo-example/issues"
+  }
+}
