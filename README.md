@@ -44,11 +44,23 @@ tooler button1.vue --open
 tooler button1.vue --hmr
 ```
 
+This project has a special `"tooler"` field in `package.json` to point to the [tools/component.js](./tools/component.js) script.
+
 ## Scripts
 
 If you need to add transforms or other project-specific features, the [tools/component](./tools/component.js) script can be modified.
 
 If you need to modify the Vue boilerplate, see [test/component.js](./test/component.js).
+
+## How To Set Up on Project
+
+Currently to set things up on project, you need to do the following:
+
+1. Once you install `vue`, also install the following:  
+`npm install --save-dev require-path-relative minimist notify-error budo`
+2. Copy the `tools/component.js` script.
+3. Copy the `test/component.js` script.
+4. Add `"tooler": "./tools/component.js"` to your package.json.
 
 Once this is more stable, some features will be split into modules to make it easier to use this on other projects.
 
