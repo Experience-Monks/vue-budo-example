@@ -15,7 +15,7 @@ npm install
 Now from the package root, you can run an isolated component:
 
 ```sh
-npm run component -- src/ui/buttons/button1.vue [--open|--hmr]
+npm t src/ui/buttons/button1.vue [--open|--hmr]
 ```
 
 #### tooler
@@ -42,6 +42,9 @@ tooler button1.vue --open
 
 # enable HMR
 tooler button1.vue --hmr
+
+# both options, but shorthand
+tooler button1.vue -oh
 ```
 
 This project has a special `"tooler"` field in `package.json` to point to the [tools/component.js](./tools/component.js) script.

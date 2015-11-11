@@ -8,7 +8,7 @@
 var path = require('path');
 var requirePath = require('require-path-relative');
 var notify = require('notify-error');
-var argv = require('minimist')(process.argv.slice(2), {
+var argv = require('minimist')(args(), {
   boolean: [ 'hmr', 'open' ],
   alias: {
     hmr: 'h',
@@ -45,4 +45,12 @@ var app = require('budo')(testEntry, {
 
 if (hmr) { // extra alert when in HMR mode
   app.on('bundle-error', notify);
+}
+
+function args () {
+  try { // try to get all from "npm test"
+    return JSON.parse(process.env.npm_config_argv).cooked.slice(1);
+  } catch (e) {
+    return process.argv.slice(2);
+  }
 }

@@ -1,22 +1,16 @@
-<template>
-  <div class="foo">{{msg}}</div>
-</template>
-
-<style>
-.foo {
-  color: red;
-  font: 13px sans-serif;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
+<style scoped>
+  h2 { color: blue; }
 </style>
+
+<template>
+  <h2>{{msg}}</h2>
+</template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      msg: 'Hello Vue + Budo!'
+      msg: 'hello world!'
     }
   }
 }

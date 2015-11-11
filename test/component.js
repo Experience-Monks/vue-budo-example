@@ -7,5 +7,8 @@ Or with tooler, from within a folder:
  */
 
 var Vue = require('vue');
-var Component = Vue.extend(require(process.env.entry));
-new Component({ el: 'body', replace: false });
+document.body.appendChild(document.createElement('app'));
+new Vue({
+  el: 'body',
+  components: { app: require(process.env.entry) }
+});

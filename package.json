@@ -28,7 +28,7 @@
   },
   "tooler": "./tools/component.js",
   "scripts": {
-    "component": "node ./tools/component.js"
+    "test": "node ./tools/component.js"
   },
   "keywords": [
     "vue",
