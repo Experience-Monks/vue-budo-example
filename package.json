@@ -21,6 +21,7 @@
     "envify": "^3.4.0",
     "minimist": "^1.2.0",
     "notify-error": "^1.2.0",
+    "path-is-absolute": "^1.0.0",
     "require-path-relative": "^1.0.1",
     "vue-hot-reload-api": "^1.2.1",
     "vueify": "^6.0.0",

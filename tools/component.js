@@ -8,6 +8,7 @@
 var path = require('path');
 var requirePath = require('require-path-relative');
 var notify = require('notify-error');
+var isAbsolute = require('path-is-absolute');
 var argv = require('minimist')(args(), {
   boolean: [ 'hmr', 'open' ],
   alias: {
@@ -24,9 +25,13 @@ if (!entry) {
   process.exit(1);
 }
 
-// test boilerplate that sets up Vue component
-var testEntry = path.resolve(__dirname, '..', 'test', 'component.js');
 var cwd = process.cwd();
+if (isAbsolute(entry)) {
+  entry = path.relative(cwd, entry);
+}
+
+// test boilerplate that sets up Vue component
+var testEntry = path.resolve(__dirname, '..', 'tests', 'component.js');
 var file = requirePath(path.dirname(testEntry), cwd, entry);
 var app = require('budo')(testEntry, {
   stream: process.stdout,
@@ -49,7 +54,17 @@ if (hmr) { // extra alert when in HMR mode
 
 function args () {
   try { // try to get all from "npm test"
-    return JSON.parse(process.env.npm_config_argv).cooked.slice(1);
+    var cooked = JSON.parse(process.env.npm_config_argv).cooked;
+    if (cooked.indexOf('run') === 0 || cooked.indexOf('run-script') === 0) {
+      cooked = cooked.slice(2);
+    } else {
+      cooked = cooked.slice(1);
+    }
+    if (cooked.indexOf('--') === 0) {
+      return cooked.slice(1);
+    } else {
+      return cooked;
+    }
   } catch (e) {
     return process.argv.slice(2);
   }
