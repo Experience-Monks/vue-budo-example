@@ -8,6 +8,10 @@ Or with tooler, from within a folder:
 
 var Vue = require('vue');
 document.body.appendChild(document.createElement('app'));
+
+var props = require(process.env.stub);
+console.log(props);
+
 new Vue({
   el: 'body',
   components: { app: require(process.env.entry) }

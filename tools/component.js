@@ -5,6 +5,7 @@
   requires.
  */
 
+var fs = require('fs');
 var path = require('path');
 var requirePath = require('require-path-relative');
 var notify = require('notify-error');
@@ -19,19 +20,29 @@ var argv = require('minimist')(args(), {
 
 var entry = argv._[0];
 var hmr = argv.hmr;
+var cwd = process.cwd();
+
 if (!entry) {
   console.error('Must specify entry. Example usage with tooler:\n' +
     '  tooler button1.vue');
   process.exit(1);
 }
 
-var cwd = process.cwd();
 if (isAbsolute(entry)) {
   entry = path.relative(cwd, entry);
 }
 
+var testEntry = path.resolve(__dirname, '..', 'test', 'component.js');
+
+var entryFolder = path.dirname(entry);
+var stubFile = path.join(entryFolder, 'stub.js');
+var stubData = 'empty-object';
+if (fs.existsSync(stubFile)) {
+  var stubRequirePath = requirePath(path.dirname(testEntry), cwd, stubFile);
+  stubData = stubRequirePath;
+}
+
 // test boilerplate that sets up Vue component
-var testEntry = path.resolve(__dirname, '..', 'tests', 'component.js');
 var file = requirePath(path.dirname(testEntry), cwd, entry);
 var app = require('budo')(testEntry, {
   stream: process.stdout,
@@ -41,7 +52,7 @@ var app = require('budo')(testEntry, {
   serve: 'bundle.js',
   browserify: {
     transform: [
-      [ 'envify', { entry: file } ],
+      [ 'envify', { entry: file, stub: stubData } ],
       'vueify'
     ],
     plugin: hmr ? [ 'browserify-hmr' ] : undefined

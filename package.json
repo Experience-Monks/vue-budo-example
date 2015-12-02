@@ -9,6 +9,9 @@
     "email": "dave.des@gmail.com",
     "url": "https://github.com/mattdesl"
   },
+  "browser": {
+    "empty-object": false
+  },
   "dependencies": {
     "vue": "^1.0.7"
   },
